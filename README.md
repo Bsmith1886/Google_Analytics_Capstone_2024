@@ -29,8 +29,20 @@ I counted the number of null values in each column and found that most of the mi
 
 There appear to be missing location information for observations throughout the data. The date range of observation with null values is the same as for the data itself. 
 
+Since most of the missing data is in the location information there is still usable duration information for the those rows with null values, i am choosing NOT to remove them from the dataset. SQL will simply ignore these values when calculating totals and averages so there is no risk to biasing the data with null values. Indeed, exporing the data with null values may lead us to some areas where data collection can be improved or where our metrics are not adequately measuring consumer behavior.
+
 ### Checking for duplicates
 
-ride_id is the primary key of this dataset, meaning all values should be unique. I checked this column for duplicates and found that there were none. 
+ride_id is the primary key of this dataset, meaning all values should be unique. I checked this column for duplicates and found that there were none. There are also 0 null values in this column.
 
+### Reviewing the values of the columns
 
+There are two columns with date and time information, they are both in the format YYYY-MM-DD HH:MM:SS UTC. 
+
+There are 2036 unique values for start_station_name. 
+
+There are two values in the member_casual column, they are member and casual. 
+
+## Data Cleaning
+
+Since I am interested in the bahvaiors of the various types of riders, one possible differentiator will be how long members rent the bikes for. To calculate this, I created a view with a new column call ride_durations, that calculates the duration of each rental in minutes. 
