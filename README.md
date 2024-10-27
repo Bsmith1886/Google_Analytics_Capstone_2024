@@ -4,7 +4,7 @@
 
 A rideshare company in Chicago wishes to analyze how their customers use their products. They are looking to understand how casual and annual members use their services differently so they can convert casual riders to members. 
 
-The company has provided customer data in CSV format going back several years. We will review data from Jan 2023 - Jan 2024. 
+The company has provided customer data in CSV format going back several years. We will review data from Jan 2022 - April 2024. 
 
 ## Data Exploration
 
