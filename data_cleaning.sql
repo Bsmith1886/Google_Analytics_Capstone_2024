@@ -42,3 +42,11 @@ CREATE TABLE IF NOT EXISTS `lively-lock-439218-m3.Bicycle_data_2022_2023.cleaned
 WHERE duration_in_minutes > 1 --filtering out ride durations less than one minute
   AND duration_in_minutes < 1440); --filtering out durations more than 1 day
 
+--Checking the number of rows excluded from the cleaned data by removing ride_durations less than one minute and more than one day
+
+SELECT 
+ (SELECT count(*) from `lively-lock-439218-m3.Bicycle_data_2022_2023.cleaned`) as cleaned_count, --total rows 7,867,554
+  (select count(*)from `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`) as raw_count, --total rows 8,223,861
+  (select count(*) from
+  `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`) - (select count(*) from `lively-lock-439218-m3.Bicycle_data_2022_2023.cleaned`); --total Difference 356,307
+
