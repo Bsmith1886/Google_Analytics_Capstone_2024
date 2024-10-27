@@ -84,5 +84,46 @@ FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`
 group by ride_id
 having count(*)>1;
 
+--Exploring the values of each column to get a sense of the range of options
+
+--How many different station names are there?
+
+Select count(distinct start_station_name) start_station_name
+
+FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; ---returns 2036 unique station names. 
+
+--How many different member types are there?
+
+Select count(distinct member_casual) member_type
+
+FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; ---returns 2 unique member types. 
+
+--What are they? 
+
+Select distinct member_casual
+
+FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; --Returns "member" and "casual"
+
+--how many rideable_types are there?
+
+Select count(distinct rideable_type) rideable_type
+
+FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; --Returns 3 unique types. 
+
+--What are they?
+
+Select distinct rideable_type
+
+FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; --Returns 3 unique values: electric_bike, classic_bike, docked_bike
+
+--New view with calculated ride durations in minutes
+
+Create View `lively-lock-439218-m3.Bicycle_data_2022_2023.ride_durations` AS
+Select *,
+  timestamp_diff(started_at,ended_at, MINUTE) as duration_in_minutes
+FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`;
+
+
+
 
 
