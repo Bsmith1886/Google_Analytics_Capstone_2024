@@ -49,6 +49,12 @@ Since I am interested in the bahvaiors of the various types of riders, one possi
 
 Since we are exploring the consumer behavior of a recreational activity, and we have good time and day inforamtion, I want to explore if there are any intersting patterns in day of the week or month of year usage that differentiate casual and member users. So the next step will be creating a new table with 2 new columns that have the day of the week and month of the year of the rental for each user. I will use the view with the ride durations to create this new table so that I have a single table with all the datapoints im interested in ananlyzing together. 
 
+The company only rents bikes for the day, so next I will review to see if there are any strange durations that should be removed. When I created my new clean table I removed any rider durations that were less than 1 min or more than 24 hours. I also set ride_id is the primary key (not enforced). 
+
+Once this was complete my clean data table had a total of 7,867,554 observations. 
+
+##
+
 
 
 
