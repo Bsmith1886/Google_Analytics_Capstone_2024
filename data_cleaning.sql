@@ -50,3 +50,9 @@ SELECT
   (select count(*) from
   `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`) - (select count(*) from `lively-lock-439218-m3.Bicycle_data_2022_2023.cleaned`); --total Difference 356,307
 
+--set ride id as primary key
+
+ALTER TABLE `lively-lock-439218-m3.Bicycle_data_2022_2023.cleaned` 
+ADD PRIMARY KEY(ride_id) not enforced
+
+
