@@ -1,19 +1,19 @@
 --Checking the date range of the data
 
 SELECT MAX(started_at) AS `max date`, min(started_at) AS `min date`
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`;
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`;
 
 --Checking total number of observations
 
 select count(*)
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`;
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`;
 
 --Checking for Columns with Null Values
 
---Count of Rows with a null value in any column
+--Count of Rows with a null value in any column --Returned  3,111,981 rows with at least one null value
 
 select count(*)
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`
 Where ride_id IS NULL
 OR rideable_type IS NULL
 OR started_at IS NULL
@@ -26,10 +26,10 @@ OR start_lng IS NULL
 OR end_lat IS NULL
 OR member_casual IS NULL;
 
---Review of Rows with Missing Data
+--Review of Rows with Missing Data. This syntax will give us all rows with at least one missing value so we can see which values are missing. 
 
 select *
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`
 Where ride_id IS NULL
 OR rideable_type IS NULL
 OR started_at IS NULL
@@ -59,12 +59,12 @@ select count(*) - COUNT(ride_id) ride_id, --counts all rows and then subtracts t
  COUNT(*) - COUNT(end_lng) end_lng,
  COUNT(*) - COUNT(member_casual) member_casual
 
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; 
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`; 
 
 --reviewing the date range of missing values
 
 select max(started_at) started_at, min(started_at) started_at,
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`
 Where ride_id IS NULL
 OR rideable_type IS NULL
 OR started_at IS NULL
@@ -80,7 +80,7 @@ OR member_casual IS NULL;
 --Checking for duplicates. Since ride_id is the primary key, each value must be unique. You can locate duplicate rows by first counting the number of Ride IDs and then checking to see if any are more than 1. 
 
 select ride_id,
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`
 group by ride_id
 having count(*)>1;
 
@@ -90,31 +90,31 @@ having count(*)>1;
 
 Select count(distinct start_station_name) start_station_name
 
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; ---returns 2036 unique station names. 
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`; ---returns 2119 unique station names. 
 
 --How many different member types are there?
 
 Select count(distinct member_casual) member_type
 
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; ---returns 2 unique member types. 
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`; ---returns 2 unique member types. 
 
 --What are they? 
 
 Select distinct member_casual
 
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; --Returns "member" and "casual"
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`; --Returns "member" and "casual"
 
 --how many rideable_types are there?
 
 Select count(distinct rideable_type) rideable_type
 
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; --Returns 3 unique types. 
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`; --Returns 3 unique types. 
 
 --What are they?
 
 Select distinct rideable_type
 
-FROM `lively-lock-439218-m3.Bicycle_data_2022_2023.bicycle_data`; --Returns 3 unique values: electric_bike, classic_bike, docked_bike
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024`; --Returns 3 unique values: electric_bike, classic_bike, docked_bike
 
 
 
