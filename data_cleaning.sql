@@ -83,4 +83,10 @@ SELECT
 ALTER TABLE `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_durations` 
 ADD PRIMARY KEY(ride_id) not enforced
 
+--Checking to make sure i have data for all months in the timeframe
+
+SELECT month, YEAR, COUNT(ride_id) AS total_rides
+FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
+GROUP BY month, month_order, year
+ORDER BY year, month_order asc;
 
