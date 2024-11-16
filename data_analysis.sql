@@ -40,5 +40,46 @@ SELECT member_casual, count(ride_id) as total_rides, avg(duration_in_minutes) as
   group by member_casual;
 
 
+--Most popular Stations/Routes
+
+--Count of rides groupd by starting station and where they ended, excluded null values. 
+
+SELECT count(ride_id) as total_rides, start_station_name, end_station_name
+  FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
+  where start_station_name is not null AND end_station_name is not null
+  group by start_station_name, end_station_name;
+
+--Count of rides by starting station, excluding null values
+SELECT count(ride_id) as total_rides, start_station_name
+  FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
+  where start_station_name is not null
+  group by start_station_name;
+
+--Count of rides by start station name and member type
+SELECT member_casual, start_station_name, count(ride_id) as total_rides
+  FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
+  where start_station_name is not null
+  group by start_station_name, member_casual;
+
+--Count of rides by end station and member type
+SELECT member_casual, end_station_name, count(ride_id) as total_rides
+  FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
+  where end_station_name is not null
+  group by end_station_name, member_casual;
+
+--Count of Rides by end station and member type with latitude of ending station
+SELECT member_casual, end_station_name,end_lat, count(ride_id) as total_rides
+  FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
+  where end_station_name is not null
+  group by end_station_name,end_lat, member_casual
+  order by total_rides asc;
+
+--Count of rides by start station name and member type with starting latitude
+
+SELECT member_casual, start_station_name,start_lat, count(ride_id) as total_rides
+  FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
+  where start_station_name is not null
+  group by start_station_name,start_lat, member_casual
+  order by total_rides asc;
 
 
