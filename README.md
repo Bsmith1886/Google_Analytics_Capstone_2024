@@ -12,20 +12,22 @@ The data provided was in a series of CSV files each with varying amounts of data
 
 Now that the files are loaded into Bigquery, I will use SQL to Explore the data. 
 
-We have a total of 8,223,861 observations. The date range of the data is 1-1-2022 Through 4/30/2024. 
+We have a total of 13,081,836 observations. The date range of the data is 1-1-2022 Through 5/30/2024. 
 
 The Table schema is as follows:
 
-![image](https://github.com/user-attachments/assets/84d619a1-f03d-45cc-99a2-a1ccdee9370b)
+![image](https://github.com/user-attachments/assets/d18e1b87-c1c1-4165-b4e4-b36f34a6e505)
+
 
 
 ### Locating Rows with null values
 
-There are a total of 1,937,747 rows with at least one null value. This represents about 25% of our observations which is a very significant number. Next I will explore these observiations with missing data in more detail to see if there are any patterns in the missing data. 
+There are a total of 3,111,981 rows with at least one null value. This represents about 25% of our observations which is a very significant number. Next I will explore these observiations with missing data in more detail to see if there are any patterns in the missing data. 
 
 I counted the number of null values in each column and found that most of the missing values are from start station and end station information, as well as end station location (latitude).   
 
-![image](https://github.com/user-attachments/assets/93aaf79c-f413-4ce8-a21b-6813bf6bf709)
+![image](https://github.com/user-attachments/assets/a54d6879-7dea-47b2-8da7-7366b40ade68)
+
 
 There appear to be missing location information for observations throughout the data. The date range of observation with null values is the same as for the data itself. 
 
@@ -39,7 +41,7 @@ ride_id is the primary key of this dataset, meaning all values should be unique.
 
 There are two columns with date and time information, they are both in the format YYYY-MM-DD HH:MM:SS UTC. 
 
-There are 2036 unique values for start_station_name. 
+There are 2119 unique values for start_station_name. 
 
 There are two values in the member_casual column, they are member and casual. 
 
@@ -47,7 +49,19 @@ There are two values in the member_casual column, they are member and casual.
 
 Since I am interested in the bahvaiors of the various types of riders, one possible differentiator will be how long members rent the bikes for. To calculate this, I created a view with a new column called ride_durations that calculates the duration of each rental in minutes. 
 
-Since we are exploring the consumer behavior of a recreational activity, and we have good time and day inforamtion, I want to explore if there are any intersting patterns in day of the week or month of year usage that differentiate casual and member users. So the next step will be creating a new table with 2 new columns that have the day of the week and month of the year of the rental for each user. I will use the view with the ride durations to create this new table so that I have a single table with all the datapoints im interested in ananlyzing together. 
+Since we are exploring the consumer behavior of a recreational activity, and we have good time and day inforamtion, I want to explore if there are any intersting patterns in day of the week or month of year usage that differentiate casual and member users. 
+
+The next step will be creating a new table that has the following new colmns:
+1. Day of Week
+2. Month of Year
+3. Year
+4. Ride Duration in Minutes
+The Table Schema for this new table is the following:
+![image](https://github.com/user-attachments/assets/32eff7a4-fd97-4828-a831-624de58fd2ad)
+
+At this point I have not yet removed any data from my dataset, I still have my original numeber of observations. I will now remove any data with any odd ride durations. Since we know the company only rents out bike for 1 day at a time, any rental that is more than one day should be removed. Similarly, any ride duration that is less than 1 minute should be removed. This will help to prevent these datapoint from creating biases in metrics like average and median durations. Since this table will only be used temporarily to do this particular analysis, I used a view to filter out these strange duration. The result was the removal of 575,281, which represents 4.3% of our data. This is not an insignificant number. While it is not a part of this analysis it would be wise to investigate where those obvservations are originating from. 
+
+
 
 The company only rents bikes for the day, so next I will review to see if there are any strange durations that should be removed. When I created my new clean table I removed any rider durations that were less than 1 min or more than 24 hours. I also set ride_id is the primary key (not enforced). 
 
