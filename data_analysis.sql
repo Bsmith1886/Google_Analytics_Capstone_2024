@@ -26,12 +26,12 @@ SELECT member_casual, day_of_week, count(ride_id) as total_rides,
   group by day_order, day_of_week,member_casual
   order by day_order asc;
 
---Member type by rides per week and month, average duration and median duration
+--Member type by rides per week and month, average duration and median duration, Ordered by year and then month order
 
-SELECT member_casual, day_of_week, month, YEAR, count(ride_id) as total_rides, avg(duration_in_minutes) as average_duration, APPROX_QUANTILES(duration_in_minutes, 2)[OFFSET(1)] AS median_duration
+SELECT member_casual, day_of_week, month, YEAR, count(ride_id) as total_rides, avg(duration_in_minutes) as average_duration, APPROX_QUANTILES(duration_in_minutes, 2)[OFFSET(1)] AS median_duration,
   FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
-  group by YEAR, month, day_order, day_of_week,member_casual
-  order by year, month, day_order asc;
+  group by YEAR, month_order, day_order, day_of_week,member_casual,month
+  order by year, month_order, day_order asc;
 
 --Comparing average to median rides times to determine if data is skewed. Data appears to be skewed right. Average ride durations are higher than median. 
 
