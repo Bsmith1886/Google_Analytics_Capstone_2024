@@ -1,71 +1,74 @@
 # Google_Analytics_Capstone_2024
 
+### Disclaimer
+
+The following analysis was conducted using free tools (BigQuery and Tableau). As a result, the methods used are not the ones I would have chosen if I had access to enterprise-level data management tools. I was unable to connect Tableau directly to the database where the data was stored, and file limitations meant that the CSV exports had to be much smaller than I would have liked. Typically, I would connect directly to a database and perform many of the calculations in SQL or directly in visualization tools (in this case Tableau, but Power BI and Excel are equally capable of performing many of these calculations depending on the dataset size).  
+
+That said, here we go.
+
 ## Background - Business Task
 
-A rideshare company in Chicago wishes to analyze how their customers use their products. They are looking to understand how casual and annual members use their services differently so they can convert casual riders to members. 
+A rideshare company in Chicago wishes to analyze how their customers use their products. They aim to understand how casual and annual members use their services differently to convert casual riders into members.  
 
-The company has provided customer data in CSV format going back several years. We will review data from Jan 2022 - April 2024. 
+The company provided customer data in CSV format spanning several years. We will review data for 2023, since that is the last full year of data available.  
 
 ## Data Exploration
 
-The data provided was in a series of CSV files each with varying amounts of data. Some of the files were too large to upload directly into bigquery, and first had to be uploaded to Google Cloud Storage. Once uploaded i was able to easily import them into a single bigquery table. 
+The data was provided in a series of CSV files, each containing varying amounts of data. Some of the files were too large to upload directly into BigQuery and first had to be uploaded to Google Cloud Storage. Once uploaded, I could easily import them into a single BigQuery table.  
 
-Now that the files are loaded into Bigquery, I will use SQL to Explore the data. 
+Now that the files are loaded into BigQuery, I will use SQL to explore the data.  
 
-We have a total of 13,081,836 observations. The date range of the data is 1-1-2022 Through 5/30/2024. 
+We have a total of 13,081,836 observations. The date range of the data is 1/1/2022 through 5/30/2024.  
 
-The Table schema is as follows:
+The table schema is as follows:  
 
 ![image](https://github.com/user-attachments/assets/d18e1b87-c1c1-4165-b4e4-b36f34a6e505)
 
+### Locating Rows with Null Values
 
+There are a total of 3,111,981 rows with at least one null value. This represents about 25% of our observations, which is a very significant number. Next, I will explore these observations with missing data in more detail to identify any patterns in the missing data.  
 
-### Locating Rows with null values
-
-There are a total of 3,111,981 rows with at least one null value. This represents about 25% of our observations which is a very significant number. Next I will explore these observiations with missing data in more detail to see if there are any patterns in the missing data. 
-
-I counted the number of null values in each column and found that most of the missing values are from start station and end station information, as well as end station location (latitude).   
+I counted the number of null values in each column and found that most of the missing values are from the start station and end station information, as well as the end station location (latitude).  
 
 ![image](https://github.com/user-attachments/assets/a54d6879-7dea-47b2-8da7-7366b40ade68)
 
+There appear to be missing location information for observations throughout the dataset. The date range of observations with null values matches the overall dataset.  
 
-There appear to be missing location information for observations throughout the data. The date range of observation with null values is the same as for the data itself. 
+Since most of the missing data is in the location information, there is still usable duration information for rows with null values. I am choosing NOT to remove them from the dataset. SQL will simply ignore these values when calculating totals and averages, so there is no risk of biasing the data with null values. Indeed, exploring the data with null values may lead us to areas where data collection can be improved or where our metrics are not adequately measuring consumer behavior.  
 
-Since most of the missing data is in the location information there is still usable duration information for the those rows with null values, I am choosing NOT to remove them from the dataset. SQL will simply ignore these values when calculating totals and averages so there is no risk to biasing the data with null values. Indeed, exporing the data with null values may lead us to some areas where data collection can be improved or where our metrics are not adequately measuring consumer behavior.
+### Checking for Duplicates
 
-### Checking for duplicates
+The `ride_id` column is the primary key of this dataset, meaning all values should be unique. I checked this column for duplicates and found none. There are also 0 null values in this column.  
 
-ride_id is the primary key of this dataset, meaning all values should be unique. I checked this column for duplicates and found that there were none. There are also 0 null values in this column.
+### Reviewing the Values of the Columns
 
-### Reviewing the values of the columns
+There are two columns with date and time information, both in the format `YYYY-MM-DD HH:MM:SS UTC`.  
 
-There are two columns with date and time information, they are both in the format YYYY-MM-DD HH:MM:SS UTC. 
+There are 2,119 unique values for `start_station_name`.  
 
-There are 2119 unique values for start_station_name. 
-
-There are two values in the member_casual column, they are member and casual. 
+There are two values in the `member_casual` column: `member` and `casual`.  
 
 ## Data Cleaning
 
-Since I am interested in the bahvaiors of the various types of riders, one possible differentiator will be how long members rent the bikes for. To calculate this, I created a view with a new column called ride_durations that calculates the duration of each rental in minutes. 
+Since I am interested in the behaviors of the different types of riders, one possible differentiator is how long members rent the bikes. To calculate this, I created a view with a new column called `ride_durations` that calculates the duration of each rental in minutes.  
 
-Since we are exploring the consumer behavior of a recreational activity, and we have good time and day inforamtion, I want to explore if there are any intersting patterns in day of the week or month of year usage that differentiate casual and member users. 
+Since we are exploring the consumer behavior of a recreational activity and have good time and day information, I want to explore if there are any interesting patterns in day-of-week or month-of-year usage that differentiate casual and member users.  
 
-The next step will be creating a new table that has the following new colmns:
-1. Day of Week
-2. Month of Year
-3. Year
-4. Ride Duration in Minutes
-The Table Schema for this new table is the following:
+The next step will be creating a new table with the following new columns:  
+
+1. Day of Week  
+2. Month of Year  
+3. Year  
+4. Ride Duration in Minutes  
+
+The table schema for this new table is as follows:  
 ![image](https://github.com/user-attachments/assets/32eff7a4-fd97-4828-a831-624de58fd2ad)
 
-At this point I have not yet removed any data from my dataset, I still have my original numeber of observations. I will now remove any data with any odd ride durations. Since we know the company only rents out bike for 1 day at a time, any rental that is more than one day should be removed. Similarly, any ride duration that is less than 1 minute should be removed. This will help to prevent these datapoint from creating biases in metrics like average and median durations. Since this table will only be used temporarily to do this particular analysis, I used a view to filter out these strange duration. The result was the removal of 575,281, which represents 4.3% of our data. This is not an insignificant number. While it is not a part of this analysis it would be wise to investigate where those obvservations are originating from. 
+At this point, I have not yet removed any data from my dataset; I still have my original number of observations. Next, I will remove any data with odd ride durations. Since we know the company only rents out bikes for one day at a time, any rental lasting more than one day should be removed. Similarly, any ride duration shorter than one minute should also be removed. This will help prevent these data points from biasing metrics like average and median durations.  
 
+Since this table will only be used temporarily for this particular analysis, I used a view to filter out these strange durations. The result was the removal of 575,281 observations, representing 4.3% of the data. This is not an insignificant number. While not a part of this analysis, it would be wise to investigate where those observations are originating from.  
 
-
-The company only rents bikes for the day, so next I will review to see if there are any strange durations that should be removed. When I created my new clean table I removed any rider durations that were less than 1 min or more than 24 hours. I also set ride_id is the primary key (not enforced). 
-
-Once this was complete my clean data table had a total of 7,867,554 observations. 
+After filtering, my clean data table had a total of 7,867,554 observations.
 
 ##
 
