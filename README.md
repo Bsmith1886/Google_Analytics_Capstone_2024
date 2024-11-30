@@ -111,7 +111,7 @@ We can derive several key pieces of information from the above visual:
 2. Casual users' total use approaches that of members on the weekend
 3. Both groups show higher usage during the summer months
 
-Next, lets explore any differences in duration of rides: 
+### Ride Length
  1. How long does each type of user ride for?
  2. Are there differences across days of the week or month of the year?
 
@@ -122,7 +122,7 @@ We can derive several key pieces of information from the above visual:
 2. The higher ride durations persist across days of the week and month of the year
 3. While members durations stay fairly constant across the year, the length of ride increases significantly in the summer and on the weekends for Casual users.
 
-Next, lets explore any differences in station preferences
+### Station Preferences
  1.  Are there any key differences in station usage between Members and Casual riders?
 
 ![image](https://github.com/user-attachments/assets/51f2eb36-0115-4881-98bf-69b2b4434b17)
