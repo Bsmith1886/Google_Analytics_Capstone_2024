@@ -96,6 +96,42 @@ After filtering, my clean data table had a total of 12,506,555 observations.
 
 ## Analysis
 
+Now that my data is cleaned and ready for analysis, I used SQl to query the table for relevant datapoints. 
+
+Business Question: How do you members vs casual riders use our services differently? 
+
+### Usage Analysis
+ 1. How many rides does each type of user take?
+ 2. Are there differences across days of the week or month of the year?
+
+![image](https://github.com/user-attachments/assets/fccec003-0c5a-4f19-81ce-3548f7a3a628)
+
+We can derive several key pieces of information from the above visual:
+1. Members use the service more frequently regardless of month or day of the week.
+2. Casual users' total use approaches that of members on the weekend
+3. Both groups show higher usage during the summer months
+
+Next, lets explore any differences in duration of rides: 
+ 1. How long does each type of user ride for?
+ 2. Are there differences across days of the week or month of the year?
+
+![image](https://github.com/user-attachments/assets/3713dcc5-1fe4-4b2f-a79f-5e4e34eeb089)
+
+We can derive several key pieces of information from the above visual:
+1. In contrast to total usage, Casual riders take, on average, much longer rides than Members
+2. The higher ride durations persist across days of the week and month of the year
+3. While members durations stay fairly constant across the year, the length of ride increases significantly in the summer and on the weekends for Casual users.
+
+Next, lets explore any differences in station preferences
+ 1.  Are there any key differences in station usage between Members and Casual riders?
+
+![image](https://github.com/user-attachments/assets/51f2eb36-0115-4881-98bf-69b2b4434b17)
+
+We can derive several key pieces of information from the above visual:
+ 1. There is a clear preference for stations along the water for Casual riders
+ 2. While members make up a larger overall total usage, we can see that some of the largest usage by station comes from Casual riders
+ 3. Member usage is significantly more evenly distributed across the city
+ 4. 
 
 
 
