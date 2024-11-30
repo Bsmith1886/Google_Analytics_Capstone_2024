@@ -2,7 +2,7 @@
 
 ### Disclaimer
 
-The following analysis was conducted using free tools (BigQuery and Tableau). As a result, the methods used are not the ones I would have chosen if I had access to enterprise-level data management tools. I was unable to connect Tableau directly to the database where the data was stored, and file limitations meant that the CSV exports had to be much smaller than I would have liked. Typically, I would connect directly to a database and perform many of the calculations in SQL or directly in visualization tools (in this case Tableau, but Power BI and Excel are equally capable of performing many of these calculations depending on the dataset size).  
+The following analysis was conducted using free tools (BigQuery and Tableau). As a result, the methods used are not the ones I would have chosen if I had access to enterprise-level data management tools. I was unable to connect Tableau directly to the database where the data was stored, and file limitations meant that the CSV exports had to be much smaller than I would have liked. Typically, I would connect directly to a database and perform many of the calculations directly in visualization tools (in this case Tableau, but Power BI and Excel are equally capable of performing many of these calculations depending on the dataset size).  
 
 That said, here we go.
 
