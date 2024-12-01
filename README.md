@@ -66,7 +66,7 @@ Since most of the missing data is in the location information, there is still us
 
 ### Reviewing the Values of the Columns
 
-  1.  2 columns with date and time information, both in the format `YYYY-MM-DD HH:MM:SS UTC`.
+  1. 2 columns with date and time information, both in the format `YYYY-MM-DD HH:MM:SS UTC`.
     a. started_at
     b. ended_at
   2. 2,119 unique values for `start_station_name`.
@@ -96,42 +96,52 @@ After filtering, my clean data table had a total of 12,506,555 observations.
 
 ## Analysis
 
-Now that my data is cleaned and ready for analysis, I used SQl to query the table for relevant datapoints. 
+Now that my data is cleaned and ready for analysis, I used SQL to query the table for relevant data points. 
 
-Business Question: How do you members vs casual riders use our services differently? 
+**Business Question:** How do members vs. casual riders use our services differently? 
 
 ### Usage Analysis
- 1. How many rides does each type of user take?
- 2. Are there differences across days of the week or month of the year?
+1. How many rides does each type of user take?  
+2. Are there differences across days of the week or months of the year?
 
 ![image](https://github.com/user-attachments/assets/fccec003-0c5a-4f19-81ce-3548f7a3a628)
 
-We can derive several key pieces of information from the above visual:
-1. Members use the service more frequently regardless of month or day of the week.
-2. Casual users' total use approaches that of members on the weekend
-3. Both groups show higher usage during the summer months
+**Takeaways:**
+1. Members use the service more frequently regardless of the month or day of the week.
+2. Casual users' total usage approaches that of members on the weekend.
+3. Both groups show higher usage during the summer months.
 
 ### Ride Length
- 1. How long does each type of user ride for?
- 2. Are there differences across days of the week or month of the year?
+1. How long does each type of user ride for?  
+2. Are there differences across days of the week or months of the year?
 
 ![image](https://github.com/user-attachments/assets/3713dcc5-1fe4-4b2f-a79f-5e4e34eeb089)
 
-We can derive several key pieces of information from the above visual:
-1. In contrast to total usage, Casual riders take, on average, much longer rides than Members
-2. The higher ride durations persist across days of the week and month of the year
-3. While members durations stay fairly constant across the year, the length of ride increases significantly in the summer and on the weekends for Casual users.
+**Takeaways:**
+1. In contrast to total usage, casual riders take, on average, much longer rides than members.  
+2. The higher ride durations persist across days of the week and months of the year.  
+3. While members' ride durations stay fairly constant throughout the year, the length of rides increases significantly in the summer and on weekends for casual users.
 
 ### Station Preferences
- 1.  Are there any key differences in station usage between Members and Casual riders?
+1. Are there any key differences in station usage between members and casual riders?
 
 ![image](https://github.com/user-attachments/assets/51f2eb36-0115-4881-98bf-69b2b4434b17)
 
-We can derive several key pieces of information from the above visual:
- 1. There is a clear preference for stations along the water for Casual riders
- 2. While members make up a larger overall total usage, we can see that some of the largest usage by station comes from Casual riders
- 3. Member usage is significantly more evenly distributed across the city
- 4. 
+**Takeaways:**
+1. There is a clear preference for stations along the water for casual riders.  
+2. While members make up a larger overall total usage, some of the largest usage by station comes from casual riders.  
+3. Member usage is significantly more evenly distributed across the city.  
+
+The goal of this analysis was to explore key differences between casual riders and members and identify ways to convert casual riders into members. From our analysis, we can see that casual riders take longer rides and prefer stations near the water. These differences are likely attributable to how the two types of riders use the service. It is likely that members use these bikes as a primary form of transportation, whereas casual riders use them for recreation. It is also likely that the increased ride length and preference for stations near the water are influenced by tourist usage.  
+
+## Recommendations
+1. Offer memberships with a limited number of uses rather than monthly unlimited options (e.g., 12 days that can be used at any time, non-consecutively).  
+2. Introduce seasonal passes to encourage use during peak months.  
+3. Provide memberships with a limited number of stations targeting recreational areas.
+4. Offer Weekend-Only Memberships
+5. Offer Limited Duration Passes (Ex: 2-7 Consecutive Days)
+
+
 
 
 
