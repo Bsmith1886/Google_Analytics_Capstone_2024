@@ -20,7 +20,7 @@ SELECT member_casual, month, YEAR, count(ride_id) as total_rides
   group by YEAR, month_order, month, member_casual
   order by year, month_order asc;
 
---Member type by Rides per day of weed
+--Member type by Rides per day of week
 SELECT member_casual, day_of_week, count(ride_id) as total_rides,
   FROM `coursera-project-1-409719.Bicycle_Data_Coursera_Project.bicycyle_data_2022_2023_2024_cleaned`
   group by day_order, day_of_week,member_casual
