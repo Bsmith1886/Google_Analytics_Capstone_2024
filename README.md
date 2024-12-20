@@ -127,17 +127,16 @@ Now that my data is cleaned and ready for analysis, I used SQL to query the tabl
 
 ![image](https://github.com/user-attachments/assets/51f2eb36-0115-4881-98bf-69b2b4434b17)
 
-**Executive Summary**
-
-![image](https://github.com/user-attachments/assets/3679b774-4c90-45f8-b643-e7a2e20d74fc)
-
-
 **Takeaways:**
 1. There is a clear preference for stations along the water for casual riders.  
 2. While members make up a larger overall total usage, some of the largest usage by station comes from casual riders.  
 3. Member usage is significantly more evenly distributed across the city.  
 
 The goal of this analysis was to explore key differences between casual riders and members and identify ways to convert casual riders into members. From our analysis, we can see that casual riders take longer rides and prefer stations near the water. These differences are likely attributable to how the two types of riders use the service. It is likely that members use these bikes as a primary form of transportation, whereas casual riders use them for recreation. It is also likely that the increased ride length and preference for stations near the water are influenced by tourist usage.  
+
+**Executive Summary**
+
+![image](https://github.com/user-attachments/assets/3679b774-4c90-45f8-b643-e7a2e20d74fc)
 
 ## Recommendations
 1. Offer memberships with a limited number of uses rather than monthly unlimited options (e.g., 12 days that can be used at any time, non-consecutively).  
