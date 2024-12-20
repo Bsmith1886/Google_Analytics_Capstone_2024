@@ -127,6 +127,11 @@ Now that my data is cleaned and ready for analysis, I used SQL to query the tabl
 
 ![image](https://github.com/user-attachments/assets/51f2eb36-0115-4881-98bf-69b2b4434b17)
 
+**Executive Summary**
+
+![image](https://github.com/user-attachments/assets/3679b774-4c90-45f8-b643-e7a2e20d74fc)
+
+
 **Takeaways:**
 1. There is a clear preference for stations along the water for casual riders.  
 2. While members make up a larger overall total usage, some of the largest usage by station comes from casual riders.  
